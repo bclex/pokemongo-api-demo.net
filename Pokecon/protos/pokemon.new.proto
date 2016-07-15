@@ -1,0 +1,1264 @@
+syntax = "proto3";
+
+
+Module: mscorlib.dll
+Module: System.dll
+Module: Mono.Security.dll
+Module: Mono.Data.Tds.dll
+Module: System.Core.dll
+Module: Google.Protobuf.dll
+ message MessageAdapter {
+ }
+ message FileDescriptorSet {
+ }
+ message FileDescriptorProto {
+ }
+ message DescriptorProto {
+ }
+ message ExtensionRange {
+ }
+ message ReservedRange {
+ }
+ message FieldDescriptorProto {
+ }
+ message OneofDescriptorProto {
+ }
+ message EnumDescriptorProto {
+ }
+ message EnumValueDescriptorProto {
+ }
+ message ServiceDescriptorProto {
+ }
+ message MethodDescriptorProto {
+ }
+ message FileOptions {
+ }
+ message MessageOptions {
+ }
+ message FieldOptions {
+ }
+ message EnumOptions {
+ }
+ message EnumValueOptions {
+ }
+ message ServiceOptions {
+ }
+ message MethodOptions {
+ }
+ message UninterpretedOption {
+ }
+ message NamePart {
+ }
+ message SourceCodeInfo {
+ }
+ message Location {
+ }
+ message Any {
+ }
+ message Duration {
+ }
+ message FieldMask {
+ }
+ message Struct {
+ }
+ message Value {
+ }
+ message ListValue {
+ }
+ message Timestamp {
+ }
+Module: Niantic.Promenade.dll
+ message GoogleAuthEventParams {
+ }
+ message ChannelAuthEventParams {
+ }
+ message LocationUpdateEventParams {
+ }
+ message RpcResponseEventParams {
+ }
+Module: Niantic.Promenade.Auth.dll
+ message GoogleToken {
+ }
+Module: OSCsharp.dll
+Module: System.Transactions.dll
+Module: System.Xml.dll
+Module: System.Data.dll
+Module: Newtonsoft.Json.dll
+Module: TUIOsharp.dll
+Module: UnityEngine.dll
+Module: UnityEngine.UI.dll
+Module: Assembly-CSharp-firstpass.dll
+Module: Assembly-CSharp.dll
+ message AssetDigestRequestProto {
+	ENUM.Holoholo.Rpc.Platform Platform = 1;
+	string DeviceManufacturer = 2;
+	string DeviceModel = 3;
+	string Locale = 4;
+	uint32 AppVersion = 5;
+ }
+ message AssetDigestEntryProto {
+	string AssetId = 1;
+	string BundleName = 2;
+	int64 Version = 3;
+	uint32 Checksum = 4;
+	int32 Size = 5;
+	Google.Protobuf.ByteString Key = 6;
+ }
+ message AssetDigestOutProto {
+	//unknown Digest = 1;
+	uint64 Timestamp = 2;
+ }
+ message DownloadUrlRequestProto {
+	//unknown AssetId = 1;
+ }
+ message DownloadUrlEntryProto {
+	string AssetId = 1;
+	string Url = 2;
+	int32 Size = 3;
+	uint32 Checksum = 4;
+ }
+ message DownloadUrlOutProto {
+	//unknown DownloadUrls = 1;
+ }
+ message CollectDailyBonusProto {
+ }
+ message CollectDailyBonusOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.CollectDailyBonusOutProto.Result Result = 1;
+ }
+ message CollectDailyDefenderBonusProto {
+ }
+ message CollectDailyDefenderBonusOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.CollectDailyDefenderBonusOutProto.Result Result = 1;
+	//unknown CurrencyType = 2;
+	//unknown CurrencyAwarded = 3;
+	int32 NumDefenders = 4;
+ }
+ message EchoProto {
+ }
+ message EchoOutProto {
+	string Context = 1;
+ }
+ message GetHatchedEggsProto {
+ }
+ message GetHatchedEggsOutProto {
+	bool Success = 1;
+	//unknown PokemonId = 2;
+	//unknown ExpAwarded = 3;
+	//unknown CandyAwarded = 4;
+	//unknown StardustAwarded = 5;
+ }
+ message EncounterProto {
+	uint64 EncounterId = 1;
+	string SpawnpointId = 2;
+	double PlayerLatDegrees = 3;
+	double PlayerLngDegrees = 4;
+ }
+ message EncounterOutProto {
+	Holoholo.Rpc.WildPokemonProto Pokemon = 1;
+	ENUM.Holoholo.Rpc.Background.Types.EncounterOutProto.Background Background = 2;
+	ENUM.Holoholo.Rpc.Status.Types.EncounterOutProto.Status Status = 3;
+	Holoholo.Rpc.CaptureProbabilityProto CaptureProbability = 4;
+ }
+ message CatchPokemonProto {
+	uint64 EncounterId = 1;
+	int32 Pokeball = 2;
+	double NormalizedReticleSize = 3;
+	string SpawnPointGuid = 4;
+	bool HitPokemon = 5;
+	double SpinModifier = 6;
+	double NormalizedHitPosition = 7;
+ }
+ message CatchPokemonOutProto {
+	ENUM.Holoholo.Rpc.Status.Types.CatchPokemonOutProto.Status Status = 1;
+	double MissPercent = 2;
+	uint64 CapturedPokemonId = 3;
+	Holoholo.Rpc.CaptureScoreProto Scores = 4;
+ }
+ message UseItemCaptureProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	uint64 EncounterId = 2;
+	string SpawnPointGuid = 3;
+ }
+ message UseItemCaptureOutProto {
+	bool Success = 1;
+	double ItemCaptureMult = 2;
+	double ItemFleeMult = 3;
+	bool StopMovement = 4;
+	bool StopAttack = 5;
+	bool TargetMax = 6;
+	bool TargetSlow = 7;
+ }
+ message EncounterTutorialCompleteProto {
+	int32 PokedexId = 1;
+ }
+ message EncounterTutorialCompleteOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.EncounterTutorialCompleteOutProto.Result Result = 1;
+	Holoholo.Rpc.PokemonProto Pokemon = 2;
+	Holoholo.Rpc.CaptureScoreProto Scores = 3;
+ }
+ message CaptureProbabilityProto {
+	//unknown PokeballType = 1;
+	//unknown CaptureProbability = 2;
+	double ReticleDifficultyScale = 12;
+ }
+ message CaptureScoreProto {
+	//unknown ActivityType = 1;
+	//unknown Exp = 2;
+	//unknown Candy = 3;
+	//unknown Stardust = 4;
+ }
+ message UseIncenseActionProto {
+	ENUM.Holoholo.Rpc.Item IncenseType = 1;
+ }
+ message UseIncenseActionOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.UseIncenseActionOutProto.Result Result = 1;
+	Holoholo.Rpc.AppliedItemProto AppliedIncense = 2;
+ }
+ message GetIncensePokemonProto {
+	double PlayerLatDegrees = 1;
+	double PlayerLngDegrees = 2;
+ }
+ message GetIncensePokemonOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.GetIncensePokemonOutProto.Result Result = 1;
+	int32 PokemonTypeId = 2;
+	double Lat = 3;
+	double Lng = 4;
+	string EncounterLocation = 5;
+	uint64 EncounterId = 6;
+	int64 DisappearTimeMs = 7;
+ }
+ message IncenseEncounterProto {
+	int64 EncounterId = 1;
+	string EncounterLocation = 2;
+ }
+ message IncenseEncounterOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.IncenseEncounterOutProto.Result Result = 1;
+	Holoholo.Rpc.PokemonProto Pokemon = 2;
+	Holoholo.Rpc.CaptureProbabilityProto CaptureProbability = 3;
+ }
+ message DiskEncounterProto {
+	int64 EncounterId = 1;
+	string FortId = 2;
+	double PlayerLatDegrees = 3;
+	double PlayerLngDegrees = 4;
+ }
+ message DiskEncounterOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.DiskEncounterOutProto.Result Result = 1;
+	Holoholo.Rpc.PokemonProto Pokemon = 2;
+	Holoholo.Rpc.CaptureProbabilityProto CaptureProbability = 3;
+ }
+ message EvolvePokemonProto {
+	uint64 PokemonId = 1;
+ }
+ message EvolvePokemonOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.EvolvePokemonOutProto.Result Result = 1;
+	Holoholo.Rpc.PokemonProto EvolvedPokemon = 2;
+	int32 ExpAwarded = 3;
+	int32 CandyAwarded = 4;
+ }
+ message AwardItemProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	int32 ItemCount = 2;
+ }
+ message FortSearchProto {
+	string Id = 1;
+	double PlayerLatDegrees = 2;
+	double PlayerLngDegrees = 3;
+	double FortLatDegrees = 4;
+	double FortLngDegrees = 5;
+ }
+ message FortSearchOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.FortSearchOutProto.Result Result = 1;
+	//unknown Items = 2;
+	int32 GemsAwarded = 3;
+	Holoholo.Rpc.PokemonProto EggPokemon = 4;
+	int32 XpAwarded = 5;
+	int64 CooldownComplete = 6;
+	int32 ChainHackSequenceNumber = 7;
+ }
+ message FortDetailsProto {
+	string Id = 1;
+	double Latitude = 2;
+	double Longitude = 3;
+ }
+ message FortDetailsOutProto {
+	string Id = 1;
+	int32 Team = 2;
+	//unknown Pokemon = 3;
+	string Name = 4;
+	//unknown ImageUrl = 5;
+	int32 Fp = 6;
+	int32 Stamina = 7;
+	int32 MaxStamina = 8;
+	ENUM.Holoholo.Rpc.FortType FortType = 9;
+	double Latitude = 10;
+	double Longitude = 11;
+	string Description = 12;
+	//unknown Modifier = 13;
+ }
+ message ClientFortModifierProto {
+	ENUM.Holoholo.Rpc.Item ModifierType = 1;
+	int64 ExpirationTimeMs = 2;
+	string DeployingPlayerCodename = 3;
+ }
+ message FortDeployProto {
+	string FortId = 1;
+	uint64 PokemonId = 2;
+	double PlayerLatDegrees = 3;
+	double PlayerLngDegrees = 4;
+ }
+ message FortDeployOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.FortDeployOutProto.Result Result = 1;
+	Holoholo.Rpc.FortDetailsOutProto FortDetailsOutProto = 2;
+	Holoholo.Rpc.PokemonProto EggPokemon = 3;
+	Holoholo.Rpc.GymStateProto GymStateProto = 4;
+ }
+ message FortRecallProto {
+	string FortId = 1;
+	uint64 PokemonId = 2;
+	double PlayerLatDegrees = 3;
+	double PlayerLngDegrees = 4;
+ }
+ message FortRecallOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.FortRecallOutProto.Result Result = 1;
+	Holoholo.Rpc.FortDetailsOutProto FortDetailsOutProto = 2;
+ }
+ message AddFortModifierProto {
+	ENUM.Holoholo.Rpc.Item ModifierType = 1;
+	string FortId = 2;
+	double PlayerLatDegrees = 3;
+	double PlayerLngDegrees = 4;
+ }
+ message AddFortModifierOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.AddFortModifierOutProto.Result Result = 1;
+	Holoholo.Rpc.FortDetailsOutProto FortDetailsOutProto = 2;
+ }
+ message PokemonCameraAttributesProto {
+	float DiskRadiusM = 1;
+	float CylRadiusM = 2;
+	float CylHeightM = 3;
+	float CylGroundM = 4;
+	float ShoulderModeScale = 5;
+ }
+ message PokemonEncounterAttributesProto {
+	float BaseCaptureRate = 1;
+	float BaseFleeRate = 2;
+	float CollisionRadiusM = 3;
+	float CollisionHeightM = 4;
+	float CollisionHeadRadiusM = 5;
+	ENUM.Holoholo.Rpc.HoloPokemonMovementType MovementType = 6;
+	float MovementTimerS = 7;
+	float JumpTimeS = 8;
+	float AttackTimerS = 9;
+ }
+ message PokemonStatsAttributesProto {
+	int32 BaseStamina = 1;
+	int32 BaseAttack = 2;
+	int32 BaseDefense = 3;
+	int32 DodgeEnergyDelta = 8;
+ }
+ message PokemonSettingsProto {
+	ENUM.Holoholo.Rpc.HoloPokemonId UniqueId = 1;
+	float ModelScale = 3;
+	ENUM.Holoholo.Rpc.HoloPokemonType Type1 = 4;
+	ENUM.Holoholo.Rpc.HoloPokemonType Type2 = 5;
+	Holoholo.Rpc.PokemonCameraAttributesProto Camera = 6;
+	Holoholo.Rpc.PokemonEncounterAttributesProto Encounter = 7;
+	Holoholo.Rpc.PokemonStatsAttributesProto Stats = 8;
+	//unknown QuickMoves = 9;
+	//unknown CinematicMoves = 10;
+	//unknown AnimTime = 11;
+	//unknown Evolution = 12;
+	int32 EvolutionPips = 13;
+	ENUM.Holoholo.Rpc.HoloPokemonClass PokemonClass = 14;
+	float PokedexHeightM = 15;
+	float PokedexWeightKg = 16;
+	ENUM.Holoholo.Rpc.HoloPokemonId ParentId = 17;
+	float HeightStdDev = 18;
+	float WeightStdDev = 19;
+	float KmDistanceToHatch = 20;
+	ENUM.Holoholo.Rpc.HoloPokemonFamilyId FamilyId = 21;
+	int32 CandyToEvolve = 22;
+ }
+ message PokeBallAttributesProto {
+	ENUM.Holoholo.Rpc.HoloItemEffect ItemEffect = 1;
+	float CaptureMulti = 2;
+	float CaptureMultiEffect = 3;
+	float ItemEffectMod = 4;
+ }
+ message PotionAttributesProto {
+	float StaPercent = 1;
+	int32 StaAmount = 2;
+ }
+ message ReviveAttributesProto {
+	float StaPercent = 1;
+ }
+ message BattleAttributesProto {
+	float StaPercent = 1;
+	float AtkPercent = 2;
+	float DefPercent = 3;
+	float DurationS = 4;
+ }
+ message FoodAttributesProto {
+	//unknown ItemEffect = 1;
+	//unknown ItemEffectPercent = 2;
+	float GrowthPercent = 3;
+ }
+ message InventoryUpgradeAttributesProto {
+	int32 AdditionalStorage = 1;
+	ENUM.Holoholo.Rpc.InventoryUpgradeType UpgradeType = 2;
+ }
+ message ExperienceBoostAttributesProto {
+	float XpMultiplier = 1;
+	int32 BoostDurationMs = 2;
+ }
+ message EggIncubatorAttributesProto {
+	ENUM.Holoholo.Rpc.EggIncubatorType IncubatorType = 1;
+	int32 Uses = 2;
+	float DistanceMultiplier = 3;
+ }
+ message IncenseAttributesProto {
+	int32 IncenseLifetimeSeconds = 1;
+	//unknown PokemonType = 2;
+	float PokemonIncenseTypeProbability = 3;
+	int32 StandingTimeBetweenEncountersSec = 4;
+	int32 MovingTimeBetweenEncounterSec = 5;
+	int32 DistanceRequiredForShorterIntervalMeters = 6;
+	int32 PokemonAttractedLengthSec = 7;
+ }
+ message FortModifierAttributesProto {
+	int32 ModifierLifetimeSeconds = 1;
+	int32 TroyDiskNumPokemonSpawned = 2;
+ }
+ message ItemSettingsProto {
+	ENUM.Holoholo.Rpc.Item UniqueId = 1;
+	ENUM.Holoholo.Rpc.HoloItemType ItemType = 2;
+	ENUM.Holoholo.Rpc.HoloItemCategory Category = 3;
+	float DropFreq = 4;
+	int32 DropTrainerLevel = 5;
+	Holoholo.Rpc.PokeBallAttributesProto Pokeball = 6;
+	Holoholo.Rpc.PotionAttributesProto Potion = 7;
+	Holoholo.Rpc.ReviveAttributesProto Revive = 8;
+	Holoholo.Rpc.BattleAttributesProto Battle = 9;
+	Holoholo.Rpc.FoodAttributesProto Food = 10;
+	Holoholo.Rpc.InventoryUpgradeAttributesProto InventoryUpgrade = 11;
+	Holoholo.Rpc.ExperienceBoostAttributesProto XpBoost = 12;
+	Holoholo.Rpc.IncenseAttributesProto Incense = 13;
+	Holoholo.Rpc.EggIncubatorAttributesProto EggIncubator = 14;
+	Holoholo.Rpc.FortModifierAttributesProto FortModifier = 15;
+ }
+ message IapItemDisplayProto {
+	string Sku = 1;
+	ENUM.Holoholo.Rpc.HoloIapItemCategory Category = 2;
+	int32 SortOrder = 3;
+	//unknown Items = 4;
+	//unknown Counts = 5;
+ }
+ message MoveSettingsProto {
+	ENUM.Holoholo.Rpc.HoloPokemonMove UniqueId = 1;
+	int32 AnimationId = 2;
+	ENUM.Holoholo.Rpc.HoloPokemonType Type = 3;
+	float Power = 4;
+	float AccuracyChance = 5;
+	float CriticalChance = 6;
+	float HealScalar = 7;
+	float StaminaLossScalar = 8;
+	int32 TrainerLevelMin = 9;
+	int32 TrainerLevelMax = 10;
+	string VfxName = 11;
+	int32 DurationMs = 12;
+	int32 DamageWindowStartMs = 13;
+	int32 DamageWindowEndMs = 14;
+	int32 EnergyDelta = 15;
+ }
+ message MoveSequenceSettingsProto {
+	//unknown Sequence = 1;
+ }
+ message TypeEffectiveSettingsProto {
+	ENUM.Holoholo.Rpc.HoloPokemonType AttackType = 2;
+	//unknown AttackScalar = 1;
+ }
+ message BadgeSettingsProto {
+	ENUM.Holoholo.Rpc.HoloBadgeType BadgeType = 1;
+	int32 BadgeRanks = 2;
+	//unknown Targets = 3;
+ }
+ message CameraSettingsProto {
+	string NextCamera = 1;
+	//unknown Interpolation = 2;
+	//unknown TargetType = 3;
+	//unknown EaseInSpeed = 4;
+	//unknown EaseOutSpeed = 5;
+	//unknown DurationS = 6;
+	//unknown WaitS = 7;
+	//unknown TransitionS = 8;
+	//unknown AngleDeg = 9;
+	//unknown AngleOffsetDeg = 10;
+	//unknown PitchDeg = 11;
+	//unknown PitchOffsetDeg = 12;
+	//unknown RollDeg = 13;
+	//unknown DistanceM = 14;
+	//unknown HeightPercent = 15;
+	//unknown VertCtrRatio = 16;
+ }
+ message PlayerLevelSettingsProto {
+	//unknown RankNum = 1;
+	//unknown RequiredExp = 2;
+	//unknown CpMultiplier = 3;
+	int32 MaxEggPlayerLevel = 4;
+	int32 MaxEncounterPlayerLevel = 5;
+ }
+ message GymLevelSettingsProto {
+	//unknown RequiredExp = 1;
+	//unknown LeaderSlots = 2;
+	//unknown TrainerSlots = 3;
+	//unknown SearchRollBonus = 4;
+ }
+ message GymBattleSettingsProto {
+	float EnergyPerSec = 1;
+	float DodgeEnergyCost = 2;
+	float RetargetSeconds = 3;
+	float EnemyAttackInterval = 4;
+	float AttackServerInterval = 5;
+	float RoundDurationSeconds = 6;
+	float BonusTimePerAllySeconds = 7;
+	int32 MaximumAttackersPerBattle = 8;
+	float SameTypeAttackBonusMultiplier = 9;
+	int32 MaximumEnergy = 10;
+	float EnergyDeltaPerHealthLost = 11;
+	int32 DodgeDurationMs = 12;
+	int32 MinimumPlayerLevel = 13;
+	int32 SwapDurationMs = 14;
+ }
+ message EncounterSettingsProto {
+	float SpinBonusThreshold = 1;
+	float ExcellentThrowThreshold = 2;
+	float GreatThrowThreshold = 3;
+	float NiceThrowThreshold = 4;
+	int32 MilestoneThreshold = 5;
+ }
+ message IapSettingsProto {
+	int32 DailyBonusCoins = 1;
+	//unknown DailyDefenderBonusPerPokemon = 2;
+	int32 DailyDefenderBonusMaxDefenders = 3;
+	//unknown DailyDefenderBonusCurrency = 4;
+	int64 MinTimeBetweenClaimsMs = 5;
+	bool DailyBonusEnabled = 6;
+	bool DailyDefenderBonusEnabled = 7;
+ }
+ message PokemonUpgradeSettingsProto {
+	int32 UpgradesPerLevel = 1;
+	int32 AllowedLevelsAbovePlayer = 2;
+	//unknown CandyCost = 3;
+	//unknown StardustCost = 4;
+ }
+ message EquippedBadgeSettingsProto {
+	int64 EquipBadgeCooldownMs = 1;
+	//unknown CatchProbabilityBonus = 2;
+	//unknown FleeProbabilityBonus = 3;
+ }
+ message GameMasterClientTemplateProto {
+	string TemplateId = 1;
+	Holoholo.Rpc.PokemonSettingsProto Pokemon = 2;
+	Holoholo.Rpc.ItemSettingsProto Item = 3;
+	Holoholo.Rpc.MoveSettingsProto Move = 4;
+	Holoholo.Rpc.MoveSequenceSettingsProto MoveSequence = 5;
+	Holoholo.Rpc.TypeEffectiveSettingsProto TypeEffective = 8;
+	Holoholo.Rpc.BadgeSettingsProto Badge = 10;
+	Holoholo.Rpc.CameraSettingsProto Camera = 11;
+	Holoholo.Rpc.PlayerLevelSettingsProto PlayerLevel = 12;
+	Holoholo.Rpc.GymLevelSettingsProto GymLevel = 13;
+	Holoholo.Rpc.GymBattleSettingsProto BattleSettings = 14;
+	Holoholo.Rpc.EncounterSettingsProto EncounterSettings = 15;
+	Holoholo.Rpc.IapItemDisplayProto IapItemDisplay = 16;
+	Holoholo.Rpc.IapSettingsProto IapSettings = 17;
+	Holoholo.Rpc.PokemonUpgradeSettingsProto PokemonUpgrades = 18;
+	Holoholo.Rpc.EquippedBadgeSettingsProto EquippedBadges = 19;
+ }
+ message GetGameMasterClientTemplatesProto {
+ }
+ message GetGameMasterClientTemplatesOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.GetGameMasterClientTemplatesOutProto.Result Result = 1;
+	//unknown Items = 2;
+	uint64 Timestamp = 3;
+ }
+ message GetRemoteConfigVersionsProto {
+	ENUM.Holoholo.Rpc.Platform Platform = 1;
+	string DeviceManufacturer = 2;
+	string DeviceModel = 3;
+	string Locale = 4;
+	uint32 AppVersion = 5;
+ }
+ message GetRemoteConfigVersionsOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.GetRemoteConfigVersionsOutProto.Result Result = 1;
+	uint64 GameMasterTimestamp = 2;
+	uint64 AssetDigestTimestamp = 3;
+ }
+ message ClientMapCellProto {
+	uint64 S2CellId = 1;
+	int64 AsOfTimeMs = 2;
+	//unknown Fort = 3;
+	//unknown SpawnPoint = 4;
+	//unknown WildPokemon = 5;
+	//unknown DeletedObject = 6;
+	bool IsTruncatedList = 7;
+	//unknown FortSummary = 8;
+	//unknown DecimatedSpawnPoint = 9;
+	//unknown CatchablePokemon = 10;
+	//unknown NearbyPokemon = 11;
+ }
+ message GetMapObjectsProto {
+	//unknown CellId = 1;
+	//unknown SinceTimeMs = 2;
+	double PlayerLat = 3;
+	double PlayerLng = 4;
+ }
+ message GetMapObjectsOutProto {
+	//unknown MapCell = 1;
+	ENUM.Holoholo.Rpc.Status.Types.GetMapObjectsOutProto.Status Status = 2;
+ }
+ message NearbyPokemonProto {
+	int32 PokedexNumber = 1;
+	float DistanceMeters = 2;
+	uint64 EncounterId = 3;
+ }
+ message GetGymDetailsProto {
+	string GymId = 1;
+	double PlayerLatDegrees = 2;
+	double PlayerLngDegrees = 3;
+	double GymLatDegrees = 4;
+	double GymLngDegrees = 5;
+ }
+ message GetGymDetailsOutProto {
+	Holoholo.Rpc.GymStateProto GymState = 1;
+	string Name = 2;
+	//unknown Url = 3;
+	ENUM.Holoholo.Rpc.Result.Types.GetGymDetailsOutProto.Result Result = 4;
+	string Description = 5;
+ }
+ message GymStateProto {
+	Holoholo.Rpc.PokemonFortProto FortMapData = 1;
+	//unknown GymMembership = 2;
+ }
+ message StartGymBattleProto {
+	string GymId = 1;
+	//unknown AttackingPokemonId = 2;
+	uint64 DefendingPokemonId = 3;
+	double PlayerLatDegrees = 4;
+	double PlayerLngDegrees = 5;
+ }
+ message StartGymBattleOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.StartGymBattleOutProto.Result Result = 1;
+	int64 BattleStartMs = 2;
+	int64 BattleEndMs = 3;
+	string BattleId = 4;
+	Holoholo.Rpc.BattleParticipantProto Defender = 5;
+	Holoholo.Rpc.BattleLogProto BattleLog = 6;
+ }
+ message AttackGymProto {
+	string GymId = 1;
+	string BattleId = 2;
+	//unknown AttackerActions = 3;
+	Holoholo.Rpc.BattleActionProto LastRetrievedAction = 4;
+	double PlayerLatDegrees = 5;
+	double PlayerLngDegrees = 6;
+ }
+ message BattleActionProto {
+	ENUM.Holoholo.Rpc.ActionType.Types.BattleActionProto.ActionType Type = 1;
+	int64 ActionStartMs = 2;
+	int32 DurationMs = 3;
+	int32 EnergyDelta = 5;
+	int32 AttackerIndex = 6;
+	int32 TargetIndex = 7;
+	uint64 ActivePokemonId = 8;
+	Holoholo.Rpc.BattleParticipantProto JoinedPlayer = 9;
+	Holoholo.Rpc.BattleResultsProto BattleResults = 10;
+	int64 DamageWindowStartMs = 11;
+	int64 DamageWindowEndMs = 12;
+	Holoholo.Rpc.BattleParticipantProto QuitPlayer = 13;
+	uint64 TargetPokemonId = 14;
+ }
+ message AttackGymOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.AttackGymOutProto.Result Result = 1;
+	Holoholo.Rpc.BattleLogProto BattleLog = 2;
+	string BattleId = 3;
+	Holoholo.Rpc.PokemonInfo ActiveDefender = 4;
+	Holoholo.Rpc.PokemonInfo ActiveAttacker = 5;
+ }
+ message GymMembershipProto {
+	Holoholo.Rpc.PokemonProto Pokemon = 1;
+	Holoholo.Rpc.PlayerPublicProfileProto TrainerPublicProfile = 2;
+ }
+ message BattleParticipantProto {
+	Holoholo.Rpc.PokemonInfo ActivePokemon = 1;
+	Holoholo.Rpc.PlayerPublicProfileProto TrainerPublicProfile = 2;
+	//unknown ReservePokemon = 3;
+	//unknown DefeatedPokemon = 4;
+ }
+ message PokemonInfo {
+	Holoholo.Rpc.PokemonProto Pokemon = 1;
+	int32 CurrentHealth = 2;
+	int32 CurrentEnergy = 3;
+ }
+ message BattleResultsProto {
+	Holoholo.Rpc.GymStateProto GymState = 1;
+	//unknown Attackers = 2;
+	//unknown PlayerXpAwarded = 3;
+	int64 NextDefenderPokemonId = 4;
+	int32 GymPointsDelta = 5;
+ }
+ message BattleLogProto {
+	ENUM.Holoholo.Rpc.State.Types.BattleLogProto.State State = 1;
+	ENUM.Holoholo.Rpc.BattleType.Types.BattleLogProto.BattleType BattleType = 2;
+	int64 ServerMs = 3;
+	//unknown BattleActions = 4;
+	int64 BattleStartMs = 5;
+	int64 BattleEndMs = 6;
+ }
+ message HoloInventoryKeyProto {
+	uint64 PokemonId = 1;
+	ENUM.Holoholo.Rpc.Item Item = 2;
+	int32 PokedexEntryId = 3;
+	bool PlayerStats = 4;
+	bool PlayerCurrency = 5;
+	bool PlayerCamera = 6;
+	bool InventoryUpgrades = 7;
+	bool AppliedItems = 8;
+	bool EggIncubators = 9;
+	int32 PokemonFamilyId = 10;
+ }
+ message HoloInventoryItemProto {
+	Holoholo.Rpc.PokemonProto Pokemon = 1;
+	Holoholo.Rpc.ItemProto Item = 2;
+	Holoholo.Rpc.PokedexEntryProto PokedexEntry = 3;
+	Holoholo.Rpc.PlayerStatsProto PlayerStats = 4;
+	Holoholo.Rpc.PlayerCurrencyProto PlayerCurrency = 5;
+	Holoholo.Rpc.PlayerCameraProto PlayerCamera = 6;
+	Holoholo.Rpc.InventoryUpgradesProto InventoryUpgrades = 7;
+	Holoholo.Rpc.AppliedItemsProto AppliedItems = 8;
+	Holoholo.Rpc.EggIncubatorsProto EggIncubators = 9;
+	Holoholo.Rpc.PokemonFamilyProto PokemonFamily = 10;
+ }
+ message FortSponsor {
+ }
+ message FortRenderingType {
+ }
+ message PokemonProto {
+	uint64 Id = 1;
+	int32 PokemonId = 2;
+	int32 Cp = 3;
+	int32 Stamina = 4;
+	int32 MaxStamina = 5;
+	int32 Move1 = 6;
+	int32 Move2 = 7;
+	string DeployedFortId = 8;
+	string OwnerName = 9;
+	bool IsEgg = 10;
+	double EggKmWalkedTarget = 11;
+	double EggKmWalkedStart = 12;
+	ENUM.Holoholo.Rpc.PokemonCreateContext Origin = 14;
+	float HeightM = 15;
+	float WeightKg = 16;
+	int32 IndividualAttack = 17;
+	int32 IndividualDefense = 18;
+	int32 IndividualStamina = 19;
+	float CpMultiplier = 20;
+	ENUM.Holoholo.Rpc.Item Pokeball = 21;
+	int64 CapturedS2CellId = 22;
+	int32 BattlesAttacked = 23;
+	int32 BattlesDefended = 24;
+	string EggIncubatorId = 25;
+	int64 CreationTimeMs = 26;
+	int32 NumUpgrades = 27;
+	float AdditionalCpMultiplier = 28;
+	bool Favorite = 29;
+	string Nickname = 30;
+	bool FromFort = 31;
+ }
+ message ItemProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	int32 Count = 2;
+	bool Unseen = 3;
+ }
+ message PokedexEntryProto {
+	int32 PokedexEntryNumber = 1;
+	int32 TimesEncountered = 2;
+	int32 TimesCaptured = 3;
+	int32 EvolutionStonePieces = 4;
+	int32 EvolutionStones = 5;
+ }
+ message PlayerStatsProto {
+	int32 Level = 1;
+	int64 Experience = 2;
+	int64 PrevLevelExp = 3;
+	int64 NextLevelExp = 4;
+	float KmWalked = 5;
+	int32 NumPokemonEncountered = 6;
+	int32 NumUniquePokedexEntries = 7;
+	int32 NumPokemonCaptured = 8;
+	int32 NumEvolutions = 9;
+	int32 PokeStopVisits = 10;
+	int32 NumberOfPokeballThrown = 11;
+	int32 NumEggsHatched = 12;
+	int32 BigMagikarpCaught = 13;
+	int32 NumBattleAttackWon = 14;
+	int32 NumBattleAttackTotal = 15;
+	int32 NumBattleDefendedWon = 16;
+	int32 NumBattleTrainingWon = 17;
+	int32 NumBattleTrainingTotal = 18;
+	int32 PrestigeRaisedTotal = 19;
+	int32 PrestigeDroppedTotal = 20;
+	int32 NumPokemonDeployed = 21;
+	//unknown NumPokemonCaughtByType = 22;
+	int32 SmallRattataCaught = 23;
+ }
+ message PlayerCurrencyProto {
+	int32 Gems = 1;
+ }
+ message PlayerCameraProto {
+	bool DefaultCamera = 1;
+ }
+ message InventoryUpgradesProto {
+	//unknown InventoryUpgrade = 1;
+ }
+ message InventoryUpgradeProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	ENUM.Holoholo.Rpc.InventoryUpgradeType UpgradeType = 2;
+	int32 AdditionalStorage = 3;
+ }
+ message EggIncubatorsProto {
+	//unknown EggIncubator = 1;
+ }
+ message EggIncubatorProto {
+	string ItemId = 1;
+	ENUM.Holoholo.Rpc.Item Item = 2;
+	ENUM.Holoholo.Rpc.EggIncubatorType IncubatorType = 3;
+	int32 UsesRemaining = 4;
+	int64 PokemonId = 5;
+	double StartKmWalked = 6;
+	double TargetKmWalked = 7;
+ }
+ message AppliedItemsProto {
+	//unknown Item = 4;
+ }
+ message AppliedItemProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	ENUM.Holoholo.Rpc.HoloItemType ItemType = 2;
+	int64 ExpirationMs = 3;
+	int64 AppliedMs = 4;
+ }
+ message PokemonFamilyProto {
+	ENUM.Holoholo.Rpc.HoloPokemonFamilyId FamilyId = 1;
+	int32 Candy = 2;
+ }
+ message PlayerPublicProfileProto {
+	string Name = 1;
+	int32 Level = 2;
+	Holoholo.Rpc.PlayerAvatarProto Avatar = 3;
+ }
+ message PlayerAvatarProto {
+	int32 Avatar = 8;
+	int32 Skin = 2;
+	int32 Hair = 3;
+	int32 Shirt = 4;
+	int32 Pants = 5;
+	int32 Hat = 6;
+	int32 Shoes = 7;
+	int32 Eyes = 9;
+	int32 Backpack = 10;
+ }
+ message ActionLogEntry {
+	int64 TimestampMs = 1;
+	bool Sfida = 2;
+	Holoholo.Rpc.CatchPokemonLogEntry CatchPokemon = 3;
+	Holoholo.Rpc.FortSearchLogEntry FortSearch = 4;
+ }
+ message CatchPokemonLogEntry {
+	ENUM.Holoholo.Rpc.Result.Types.CatchPokemonLogEntry.Result Result = 1;
+	int32 PokedexNumber = 2;
+	int32 CombatPoints = 3;
+	uint64 PokemonId = 4;
+ }
+ message FortSearchLogEntry {
+	ENUM.Holoholo.Rpc.Result.Types.FortSearchLogEntry.Result Result = 1;
+	string FortId = 2;
+	//unknown Items = 3;
+	int32 Eggs = 4;
+ }
+ message InventoryProto {
+	//unknown InventoryItem = 1;
+ }
+ message InventoryItemProto {
+	int64 ModifiedTimestamp = 1;
+	Google.Protobuf.ByteString DeletedItemKey = 2;
+	Google.Protobuf.ByteString Item = 3;
+ }
+ message InventoryDeltaProto {
+	int64 OriginalTimestamp = 1;
+	int64 NewTimestamp = 2;
+	//unknown InventoryItem = 3;
+ }
+ message PlayerBadgeProto {
+	ENUM.Holoholo.Rpc.HoloBadgeType BadgeType = 1;
+	int32 Rank = 2;
+	int32 StartValue = 3;
+	int32 EndValue = 4;
+	double CurrentValue = 5;
+ }
+ message PlayerProfileProto {
+	string PlayerName = 1;
+ }
+ message PlayerProfileOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.PlayerProfileOutProto.Result Result = 1;
+	int64 StartTime = 2;
+	//unknown Badges = 3;
+ }
+ message LevelUpRewardsProto {
+	int32 Level = 1;
+ }
+ message LevelUpRewardsOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.LevelUpRewardsOutProto.Result Result = 1;
+	//unknown Items = 2;
+	//unknown ItemsUnlocked = 4;
+ }
+ message PokemonFortProto {
+	string FortId = 1;
+	int64 LastModifiedMs = 2;
+	double Latitude = 3;
+	double Longitude = 4;
+	int32 Team = 5;
+	int32 GuardPokemonId = 6;
+	int32 GuardPokemonLevel = 7;
+	bool Enabled = 8;
+	ENUM.Holoholo.Rpc.FortType FortType = 9;
+	int64 GymPoints = 10;
+	bool IsInBattle = 11;
+	//unknown ActiveFortModifier = 12;
+	Holoholo.Rpc.MapPokemonProto ActivePokemon = 13;
+	int64 CooldownCompleteMs = 14;
+	ENUM.Holoholo.Rpc.Sponsor.Types.FortSponsor.Sponsor Sponsor = 15;
+	ENUM.Holoholo.Rpc.RenderingType.Types.FortRenderingType.RenderingType RenderingType = 16;
+ }
+ message PokemonSummaryFortProto {
+	string FortSummaryId = 1;
+	int64 LastModifiedMs = 2;
+	double Latitude = 3;
+	double Longitude = 4;
+ }
+ message ClientSpawnPointProto {
+	double Latitude = 2;
+	double Longitude = 3;
+ }
+ message WildPokemonProto {
+	uint64 EncounterId = 1;
+	int64 LastModifiedMs = 2;
+	double Latitude = 3;
+	double Longitude = 4;
+	string SpawnPointId = 5;
+	Holoholo.Rpc.PokemonProto Pokemon = 7;
+	int32 TimeTillHiddenMs = 11;
+ }
+ message MapPokemonProto {
+	string SpawnpointId = 1;
+	uint64 EncounterId = 2;
+	int32 PokedexTypeId = 3;
+	int64 ExpirationTimeMs = 4;
+	double Latitude = 5;
+	double Longitude = 6;
+ }
+ message ClientPlayerProto {
+	int64 CreationTimeMs = 1;
+	string Name = 2;
+	int32 Team = 5;
+	//unknown TutorialComplete = 7;
+	Holoholo.Rpc.PlayerAvatarProto PlayerAvatarProto = 8;
+	int32 MaxPokemonStorage = 9;
+	int32 MaxItemStorage = 10;
+	Holoholo.Rpc.DailyBonusProto DailyBonusProto = 11;
+	Holoholo.Rpc.EquippedBadgeProto EquippedBadgeProto = 12;
+	Holoholo.Rpc.ContactSettingsProto ContactSettingsProto = 13;
+	//unknown CurrencyBalance = 14;
+ }
+ message CurrencyQuantityProto {
+	string CurrencyType = 1;
+	int32 Quantity = 2;
+ }
+ message ContactSettingsProto {
+	bool SendMarketingEmails = 1;
+	bool SendPushNotifications = 2;
+ }
+ message DailyBonusProto {
+	int64 NextCollectTimestampMs = 1;
+	int64 NextDefenderBonusCollectTimestampMs = 2;
+ }
+ message EquippedBadgeProto {
+	ENUM.Holoholo.Rpc.HoloBadgeType EquippedBadge = 1;
+	int32 Level = 2;
+	int64 NextEquipChangeAllowedTimestampMs = 3;
+ }
+ message GetPlayerProto {
+ }
+ message GetPlayerOutProto {
+	bool Success = 1;
+	Holoholo.Rpc.ClientPlayerProto Player = 2;
+ }
+ message PlayerUpdateProto {
+	double Lat = 1;
+	double Lng = 2;
+ }
+ message PlayerUpdateOutProto {
+	//unknown WildPokemon = 1;
+	//unknown Fort = 2;
+	int32 FortsNearby = 3;
+ }
+ message GetInventoryProto {
+	int64 TimestampMillis = 1;
+	//unknown ItemBeenSeen = 2;
+ }
+ message GetInventoryOutProto {
+	bool Success = 1;
+	Holoholo.Rpc.InventoryDeltaProto InventoryDelta = 2;
+ }
+ message DebugUpdateInventoryProto {
+	//unknown Pokemon = 1;
+	//unknown Item = 2;
+ }
+ message DebugUpdateInventoryOutProto {
+	bool Success = 1;
+ }
+ message SetFavoritePokemonProto {
+	int64 PokemonId = 1;
+	bool IsFavorite = 2;
+ }
+ message SetFavoritePokemonOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.SetFavoritePokemonOutProto.Result Result = 1;
+ }
+ message ReleasePokemonProto {
+	uint64 PokemonId = 1;
+	//unknown PokemonIds = 2;
+ }
+ message ReleasePokemonOutProto {
+	ENUM.Holoholo.Rpc.Status.Types.ReleasePokemonOutProto.Status Status = 1;
+	int32 CandyAwarded = 2;
+ }
+ message NicknamePokemonProto {
+	uint64 PokemonId = 1;
+	string Nickname = 2;
+ }
+ message NicknamePokemonOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.NicknamePokemonOutProto.Result Result = 1;
+ }
+ message DebugDeletePlayerProto {
+ }
+ message DebugDeletePlayerOutProto {
+	bool Success = 1;
+ }
+ message GetSuggestedCodenamesRequestProto {
+ }
+ message GetSuggestedCodenamesResponseProto {
+	//unknown Codename = 1;
+	bool Success = 2;
+ }
+ message CheckCodenameAvailableRequestProto {
+	string Codename = 1;
+ }
+ message ClaimCodenameRequestProto {
+	string Codename = 1;
+ }
+ message CodenameResultProto {
+	string Codename = 1;
+	string UserMessage = 2;
+	bool IsAssignable = 3;
+	ENUM.Holoholo.Rpc.Status.Types.CodenameResultProto.Status Status = 4;
+ }
+ message SetAvatarProto {
+	Holoholo.Rpc.PlayerAvatarProto PlayerAvatarProto = 2;
+ }
+ message SetAvatarOutProto {
+	ENUM.Holoholo.Rpc.Status.Types.SetAvatarOutProto.Status Status = 1;
+	Holoholo.Rpc.ClientPlayerProto Player = 2;
+ }
+ message SetContactSettingsProto {
+	Holoholo.Rpc.ContactSettingsProto ContactSettingsProto = 1;
+ }
+ message SetContactSettingsOutProto {
+	ENUM.Holoholo.Rpc.Status.Types.SetContactSettingsOutProto.Status Status = 1;
+	Holoholo.Rpc.ClientPlayerProto Player = 2;
+ }
+ message SetPlayerTeamProto {
+	ENUM.Holoholo.Rpc.Team Team = 1;
+ }
+ message SetPlayerTeamOutProto {
+	ENUM.Holoholo.Rpc.Status.Types.SetPlayerTeamOutProto.Status Status = 1;
+	Holoholo.Rpc.ClientPlayerProto Player = 2;
+ }
+ message MarkTutorialCompleteProto {
+	//unknown TutorialComplete = 1;
+	bool SendMarketingEmails = 2;
+	bool SendPushNotifications = 3;
+ }
+ message MarkTutorialCompleteOutProto {
+	bool Success = 1;
+	Holoholo.Rpc.ClientPlayerProto Player = 2;
+ }
+ message CheckAwardedBadgesProto {
+ }
+ message CheckAwardedBadgesOutProto {
+	bool Success = 1;
+	//unknown AwardedBadges = 2;
+	//unknown AwardedBadgeLevels = 3;
+ }
+ message RecycleItemProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	int32 Count = 2;
+ }
+ message RecycleItemOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.RecycleItemOutProto.Result Result = 1;
+	int32 NewCount = 2;
+ }
+ message PtcToken {
+	string Token = 1;
+	int32 Expiration = 2;
+ }
+ message EquipBadgeProto {
+	ENUM.Holoholo.Rpc.HoloBadgeType Badge = 1;
+ }
+ message EquipBadgeOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.EquipBadgeOutProto.Result Result = 1;
+	Holoholo.Rpc.EquippedBadgeProto Equipped = 2;
+ }
+ message GetActionLogRequest {
+ }
+ message GetActionLogResponse {
+	ENUM.Holoholo.Rpc.Result.Types.GetActionLogResponse.Result Result = 1;
+	//unknown Log = 2;
+ }
+ message GlobalSettingsProto {
+	Holoholo.Rpc.FortSettingsProto FortSettings = 2;
+	Holoholo.Rpc.MapSettingsProto MapSettings = 3;
+	Holoholo.Rpc.LevelSettingsProto LevelSettings = 4;
+	Holoholo.Rpc.InventorySettingsProto InventorySettings = 5;
+	string MinimumClientVersion = 6;
+ }
+ message FortSettingsProto {
+	double InteractionRangeMeters = 1;
+	int32 MaxTotalDeployedPokemon = 2;
+	int32 MaxPlayerDeployedPokemon = 3;
+	double DeployStaminaMultiplier = 4;
+	double DeployAttackMultiplier = 5;
+	double FarInteractionRangeMeters = 6;
+ }
+ message MapSettingsProto {
+	double PokemonVisibleRange = 1;
+	double PokeNavRangeMeters = 2;
+	double EncounterRangeMeters = 3;
+	float GetMapObjectsMinRefreshSeconds = 4;
+	float GetMapObjectsMaxRefreshSeconds = 5;
+	float GetMapObjectsMinDistanceMeters = 6;
+	string GoogleMapsApiKey = 7;
+ }
+ message LevelSettingsProto {
+	double TrainerCpModifier = 2;
+	double TrainerDifficultyModifier = 3;
+ }
+ message InventorySettingsProto {
+	int32 MaxPokemon = 1;
+	int32 MaxBagItems = 2;
+	int32 BasePokemon = 3;
+	int32 BaseBagItems = 4;
+	int32 BaseEggs = 5;
+ }
+ message DownloadSettingsActionProto {
+	string Sha1 = 1;
+ }
+ message DownloadSettingsResponseProto {
+	string Error = 1;
+	string Sha1 = 2;
+	Google.Protobuf.ByteString Values = 3;
+ }
+ message RegisterSfidaRequest {
+	string SfidaId = 1;
+ }
+ message RegisterSfidaResponse {
+	Google.Protobuf.ByteString AccessToken = 1;
+ }
+ message TradingSearchProto {
+	double Lat = 1;
+	double Lng = 2;
+ }
+ message TradingSearchOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.TradingSearchOutProto.Result Result = 1;
+	//unknown PlayerNames = 2;
+ }
+ message TradingOfferProto {
+	string TradingPlayer = 1;
+	uint64 PokemonId = 2;
+ }
+ message TradingOfferOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.TradingOfferOutProto.Result Result = 1;
+	uint64 TradeId = 2;
+ }
+ message PollForTradeResponseProto {
+	uint64 TradeId = 1;
+	uint64 PokemonId = 2;
+	bool RequestCancel = 3;
+ }
+ message PollForTradeResponseOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.PollForTradeResponseOutProto.Result Result = 1;
+	Holoholo.Rpc.PokemonProto ReturnPokemon = 2;
+ }
+ message TradingResultProto {
+	uint64 TradeId = 1;
+	bool PlayerAccept = 2;
+ }
+ message TradingResultOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.TradingResultOutProto.Result Result = 1;
+ }
+ message UpgradePokemonProto {
+	uint64 PokemonId = 1;
+ }
+ message UpgradePokemonOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.UpgradePokemonOutProto.Result Result = 1;
+	Holoholo.Rpc.PokemonProto UpgradedPokemon = 2;
+ }
+ message UseItemPotionProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	uint64 PokemonId = 2;
+ }
+ message UseItemPotionOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.UseItemPotionOutProto.Result Result = 1;
+	int32 Stamina = 2;
+ }
+ message UseItemReviveProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	uint64 PokemonId = 2;
+ }
+ message UseItemReviveOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.UseItemReviveOutProto.Result Result = 1;
+	int32 Stamina = 2;
+ }
+ message UseItemGymProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+	string GymId = 2;
+	double PlayerLatDegrees = 3;
+	double PlayerLngDegrees = 4;
+ }
+ message UseItemGymOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.UseItemGymOutProto.Result Result = 1;
+	int64 UpdatedGp = 2;
+ }
+ message UseItemXpBoostProto {
+	ENUM.Holoholo.Rpc.Item Item = 1;
+ }
+ message UseItemXpBoostOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.UseItemXpBoostOutProto.Result Result = 1;
+	Holoholo.Rpc.AppliedItemsProto AppliedItems = 2;
+ }
+ message UseItemEggIncubatorProto {
+	string ItemId = 1;
+	int64 PokemondId = 2;
+ }
+ message UseItemEggIncubatorOutProto {
+	ENUM.Holoholo.Rpc.Result.Types.UseItemEggIncubatorOutProto.Result Result = 1;
+	Holoholo.Rpc.EggIncubatorProto EggIncubator = 2;
+ }
