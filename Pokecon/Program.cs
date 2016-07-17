@@ -43,7 +43,7 @@ namespace Pokecon
             COORDS_ALTITUDE = f2i(alt);
         }
 
-        static ResponseEnvelop api_req(string api_endpoint, string access_token, RequestEnvelop.Types.Requests[] reqs)
+        static ResponseEnvelop api_req(string api_endpoint, string access_token, RequestEnvelop.Types.Requests[] reqs, string provider)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Pokecon
                     Unknown12 = 989,
                     Auth = new RequestEnvelop.Types.AuthInfo
                     {
-                        Provider = "ptc",
+                        Provider = provider,
                         Token = new RequestEnvelop.Types.AuthInfo.Types.JWT { Contents = access_token, Unknown13 = 59 },
                     }
                 };
@@ -85,7 +85,7 @@ namespace Pokecon
             }
         }
 
-        static string get_api_endpoint(string access_token)
+        static string get_api_endpoint(string access_token, string provider)
         {
             var ret = api_req(API_URL, access_token, new[] {
                 new RequestEnvelop.Types.Requests { Type = 2 },
@@ -93,14 +93,114 @@ namespace Pokecon
                 new RequestEnvelop.Types.Requests { Type = 4 },
                 new RequestEnvelop.Types.Requests { Type = 129 },
                 new RequestEnvelop.Types.Requests { Type = 5, Message = new RequestEnvelop.Types.Unknown3 { Unknown4 = "4a2e9bc330dae60e7b74fc85b98868ab4700802e" } },
-            });
+            }, provider);
             try { return "https://" + ret.ApiUrl + "/rpc"; }
-            catch { return null; }
+            catch (Exception e){
+                return null;
+            }
         }
 
-        static ResponseEnvelop get_profile(string api_endpoint, string access_token)
+        static ResponseEnvelop get_profile(string api_endpoint, string access_token, string provider)
         {
-            return api_req(api_endpoint, access_token, new[] { new RequestEnvelop.Types.Requests { Type = 2 } });
+            return api_req(api_endpoint, access_token, new[] { new RequestEnvelop.Types.Requests { Type = 2 } }, provider);
+        }
+
+        static string login_google(string username, string password)
+        {
+            Console.WriteLine("[!] Google login for: {0}", username);
+            var first = "https://accounts.google.com/o/oauth2/auth?client_id=848232511240-73ri3t7plvk96pj4f85uj8otdat2alem.apps.googleusercontent.com&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=openid%20email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
+            var second = "https://accounts.google.com/AccountLoginInfo";
+            var third = "https://accounts.google.com/signin/challenge/sl/password";
+            var last = "https://accounts.google.com/o/oauth2/token";
+            using (var clientHandler = new HttpClientHandler())
+            {
+                clientHandler.AllowAutoRedirect = true;
+                using (var client = new HttpClient(clientHandler))
+                {
+                    client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (iPad; CPU OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H143");
+                    var response = client.GetAsync(first).Result;
+                    var r = response.Content.ReadAsStringAsync().Result;
+
+                    var galx_regex = "name=\"GALX\" value=\"(.*?)\"";
+                    var matches = Regex.Matches(r, galx_regex);
+                    var galx = matches[0].Groups[1].Value;
+                    var gxf_regex = "name=\"gxf\" value=\"(.*?)\"";
+                    var gxf = Regex.Matches(r, gxf_regex)[0].Groups[1].Value;
+                    var cont_regex = "name=\"continue\" value=\"(.*?)\"";
+                    matches = Regex.Matches(r, cont_regex);
+                    var cont = matches[0].Groups[1].Value.Replace("&amp;", "&");
+                    var data1 = new[]
+                    {
+                        new KeyValuePair<string, string>("Page", "PasswordSeparationSignIn"),
+                        new KeyValuePair<string, string>("GALX", galx),
+                        new KeyValuePair<string, string>("gxf", gxf),
+                        new KeyValuePair<string, string>("continue", cont),
+                        new KeyValuePair<string, string>("ltmpl", "embedded"),
+                        new KeyValuePair<string, string>("scc", "1"),
+                        new KeyValuePair<string, string>("sarp", "1"),
+                        new KeyValuePair<string, string>("oauth", "1"),
+                        new KeyValuePair<string, string>("ProfileInformation", ""),
+                        new KeyValuePair<string, string>("_utf8", "?"),
+                        new KeyValuePair<string, string>("bgresponse", "js_disabled"),
+                        new KeyValuePair<string, string>("Email", username),
+                        new KeyValuePair<string, string>("signIn", "Next"),
+                    };
+                    response = client.PostAsync(second, new FormUrlEncodedContent(data1)).Result;
+                    r = response.Content.ReadAsStringAsync().Result;
+                    gxf = Regex.Matches(r, gxf_regex)[0].Groups[1].Value;
+                    var profileinformation_regex = "name=\"ProfileInformation\" type=\"hidden\" value=\"(.*?)\"";
+                    var profileinformation = Regex.Matches(r, profileinformation_regex)[0].Groups[1].Value;
+                    var data2 = new[]
+                    {
+                        new KeyValuePair<string, string>("Page", "PasswordSeparationSignIn"),
+                        new KeyValuePair<string, string>("GALX", galx),
+                        new KeyValuePair<string, string>("gxf", gxf),
+                        new KeyValuePair<string, string>("continue", cont),
+                        new KeyValuePair<string, string>("ltmpl", "embedded"),
+                        new KeyValuePair<string, string>("scc", "1"),
+                        new KeyValuePair<string, string>("sarp", "1"),
+                        new KeyValuePair<string, string>("oauth", "1"),
+                        new KeyValuePair<string, string>("ProfileInformation", profileinformation),
+                        new KeyValuePair<string, string>("_utf8", "?"),
+                        new KeyValuePair<string, string>("bgresponse", "js_disabled"),
+                        new KeyValuePair<string, string>("Email", username),
+                        new KeyValuePair<string, string>("Passwd", password),
+                        new KeyValuePair<string, string>("signIn", "Sign in"),
+                        new KeyValuePair<string, string>("PersistentCookie", "yes"),
+                    };
+                    response = client.PostAsync(third, new FormUrlEncodedContent(data2)).Result;
+                    r = response.Content.ReadAsStringAsync().Result;
+                    var clientid = "848232511240-73ri3t7plvk96pj4f85uj8otdat2alem.apps.googleusercontent.com";
+                    var statewrapper_regex = "name=\"state_wrapper\" value=\"(.*?)\"";
+                    var statewrapper = Regex.Matches(r, statewrapper_regex)[0].Groups[1].Value;
+                    var connect_approve_regex = "id=\"connect-approve\" action=\"(.*?)\"";
+                    var connect_approve = Regex.Matches(r, connect_approve_regex)[0].Groups[1].Value.Replace("&amp;", "&");
+                    var data3 = new[]
+                    {
+                        new KeyValuePair<string, string>("submit_access", "true"),
+                        new KeyValuePair<string, string>("state_wrapper", statewrapper),
+                        new KeyValuePair<string, string>("_utf8", "?"),
+                        new KeyValuePair<string, string>("bgresponse", "js_disabled"),
+                    };
+                    response = client.PostAsync(connect_approve, new FormUrlEncodedContent(data3)).Result;
+                    r = response.Content.ReadAsStringAsync().Result;
+                    var code_regex = "id=\"code\" type=\"text\" readonly=\"readonly\" value=\"(.*?)\"";
+                    var code = Regex.Matches(r, code_regex)[0].Groups[1].Value.Replace("&amp;", "&");
+                    var data4 = new[]
+                    {
+                        new KeyValuePair<string, string>("client_id", clientid),
+                        new KeyValuePair<string, string>("client_secret", "NCjF1TLi2CcY6t5mt0ZveuL7"),
+                        new KeyValuePair<string, string>("code", code),
+                        new KeyValuePair<string, string>("grant_type", "authorization_code"),
+                        new KeyValuePair<string, string>("redirect_uri", "urn:ietf:wg:oauth:2.0:oob"),
+                        new KeyValuePair<string, string>("scope", "openid email https://www.googleapis.com/auth/userinfo.email"),
+                    };
+                    response = client.PostAsync(last, new FormUrlEncodedContent(data4)).Result;
+                    r = response.Content.ReadAsStringAsync().Result;
+                    var jdata = JObject.Parse(r);
+                    return jdata["id_token"].ToString();
+                }
+            }
         }
 
         static string login_ptc(string username, string password)
@@ -156,14 +256,17 @@ namespace Pokecon
 
         public class Options
         {
-            [ValueArgument(typeof(string), 'u', "username", Description = "PTC Username", Optional = false)]
+            [ValueArgument(typeof(string), 'u', "username", Description = "Username", Optional = false)]
             public string username { get; set; }
-            [ValueArgument(typeof(string), 'p', "password", Description = "PTC Password", Optional = false)]
+            [ValueArgument(typeof(string), 'p', "password", Description = "Password", Optional = false)]
             public string password { get; set; }
             [ValueArgument(typeof(string), 'l', "location", Description = "Location", DefaultValue = "1600 pennsylvania ave washington dc")]
             public string location { get; set; }
             [ValueArgument(typeof(bool), 'd', "debug", Description = "Debug Mode", DefaultValue = true)]
             public bool debug { get; set; }
+            [ValueArgument(typeof(string), 'm', "method", Description = "Login Method", DefaultValue = "ptc")]
+            public string method { get; set; }
+
         }
 
         public static void Main(string[] args1)
@@ -173,7 +276,7 @@ namespace Pokecon
             argsParser.ExtractArgumentAttributes(args);
             try { argsParser.ParseCommandLine(args1); }
             catch (Exception e) { Console.WriteLine(e.Message); return; }
-            
+
             if (args.debug)
             {
                 _debug = true;
@@ -186,8 +289,20 @@ namespace Pokecon
             }
 
             set_location(args.location);
-
-            var access_token = login_ptc(args.username, args.password);
+            string access_token;
+            if (args.method == "ptc")
+            {
+                access_token = login_ptc(args.username, args.password);
+            }
+            else if (args.method == "google")
+            {
+                access_token = login_google(args.username, args.password);
+            }
+            else
+            {
+                Console.WriteLine("[-] Invalid provider");
+                return;
+            }
             if (access_token == null)
             {
                 Console.WriteLine("[-] Wrong username/password");
@@ -195,7 +310,7 @@ namespace Pokecon
             }
             Console.WriteLine("[+] RPC Session Token: {0} ...", access_token);
 
-            var api_endpoint = get_api_endpoint(access_token);
+            var api_endpoint = get_api_endpoint(access_token, args.method);
             if (api_endpoint == null)
             {
                 Console.WriteLine("[-] RPC server offline");
@@ -203,7 +318,7 @@ namespace Pokecon
             }
             Console.WriteLine("[+] Received API endpoint: {0}", api_endpoint);
 
-            var profile = get_profile(api_endpoint, access_token);
+            var profile = get_profile(api_endpoint, access_token, args.method);
             if (profile != null)
             {
                 Console.WriteLine("[+] Login successful");
@@ -217,6 +332,7 @@ namespace Pokecon
             else {
                 Console.WriteLine("[-] Ooops...");
             }
+            Console.ReadLine();
         }
 
         public static DateTime FromUnixTime(long source)
