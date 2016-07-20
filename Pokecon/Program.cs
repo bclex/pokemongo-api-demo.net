@@ -181,7 +181,7 @@ namespace Pokecon
             }
             if (string.IsNullOrEmpty(args.username))
             {
-                Console.WriteLine("[!] DEBUG mode on");
+                Console.WriteLine("[!] No username provided. Use the -u argument to define a username to use");
                 return;
             }
 
