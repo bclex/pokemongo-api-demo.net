@@ -65,6 +65,7 @@ namespace Pokecon
                     envelop.Requests.Add(r);
                 using (var client = new HttpClient())
                 {
+                    client.DefaultRequestHeaders.ExpectContinue = false;
                     client.DefaultRequestHeaders.Add("User-Agent", "Niantic App");
                     using (var ms = new MemoryStream())
                     {
